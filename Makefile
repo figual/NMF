@@ -31,8 +31,10 @@ LDFLAGS        :=
 # --- General build definitions ------------------------------------------------
 #
 
-FLAGS_FLOAT    := -DRANDOM -DREAL -DBLAS -DFATLAS 
-FLAGS_DOUBLE   := -DRANDOM        -DBLAS -DFATLAS 
+USE_BLAS       := -DBLAS -DFATLAS
+
+FLAGS_FLOAT    := -DREAL 
+FLAGS_DOUBLE   :=        
 
 TEST_SRC_PATH  := .  
 TEST_OBJ_PATH  := obj
@@ -42,24 +44,20 @@ TEST_OBJS      := $(patsubst $(TEST_SRC_PATH)/%.c, \
                              $(TEST_OBJ_PATH)/%.o, \
                              $(wildcard $(TEST_SRC_PATH)/*.c))
 
-# Binary executable name.
-TEST_BIN       := test_libblis.x
+# Binary executable names.
+FLOAT_MT_BIN       := NMF_mt_float.x
+FLOAT_ST_BIN       := NMF_st_float.x
+
+DOUBLE_MT_BIN      := NMF_mt_double.x
+DOUBLE_ST_BIN      := NMF_st_double.x
 
 # Add installed and local header paths to CFLAGS
-CFLAGS         += -I$(BLIS_INC_PATH) -I$(TEST_SRC_PATH)
-
-LINKER         := $(CC)
-#LDFLAGS        := -L/usr/lib/gcc/x86_64-redhat-linux/4.1.2 -L/usr/lib/gcc/x86_64-redhat-linux/4.1.2/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -lgfortranbegin -lgfortran -lm
-#LDFLAGS        += -lpthread
-LDFLAGS        := -L/usr/lib/gcc/i486-linux-gnu/4.4.3 -L/usr/lib/gcc/i486-linux-gnu/4.4.3/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/i486-linux-gnu/4.4.3/../../.. -L/usr/lib/i486-linux-gnu -lgfortranbegin -lgfortran -lm
-
-
 
 #
 # --- Targets/rules ------------------------------------------------------------
 #
 
-all: $(TEST_BIN)
+all: $(FLOAT_MT_BIN) $(FLOAT_ST_BIN) $(DOUBLE_MT_BIN) $(DOUBLE_ST_BIN)
 
 
 
@@ -71,7 +69,7 @@ $(TEST_OBJ_PATH)/%.o: $(TEST_SRC_PATH)/%.c
 
 # -- Executable file rules --
 
-$(TEST_BIN): $(TEST_OBJS) $(BLIS_LIB)
+$(FLOAT_MT_BIN): $(TEST_OBJS) $(BLIS_LIB)
 	$(LINKER) $(TEST_OBJS) $(BLIS_LIB) $(LDFLAGS) -o $@
 
 
