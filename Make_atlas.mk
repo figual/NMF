@@ -10,3 +10,5 @@ ATLAS_LIB_MT       := $(ATLAS_LIB_PATH)/libf77blas.a $(ATLAS_LIB_PATH)/libatlas.
 # BLAS library.
 BLAS_LIB_ST  := $(ATLAS_LIB_ST)
 BLAS_LIB_MT  := $(ATLAS_LIB_MT)
+
+BLAS_INCLUDE=/home/figual/atlas/include
