@@ -1,9 +1,0 @@
-file=none.bin
-N=2000 M=62 K=64 nTests=1 stop_threshold=40
-Better W and H, Error 2.123983e+01 Test=0, Iter=1210
-
-
-
- EXEC TIME-ATLAS 5.381064 (s).                N=2000 M=62 K=64 Tests=1 (4)
-tH0=0.000000 tH1=0.000000 tH2=0.000000 tH3=0.000000
-tW0=0.000000 tW1=0.000000 tW2=0.000000 tW3=0.000000
