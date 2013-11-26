@@ -9,7 +9,7 @@ include blas.mk
 # (ie: config/<configname>/make_defs.mk).
 CC             := gcc
 LINKER         := $(CC)
-CFLAGS         := -O2 -Wall -Wno-comment -I $(BLAS_INCLUDE)
+CFLAGS         := -O2 -Wall -Wno-comment -I $(BLAS_INCLUDE) 
 LDFLAGS        := -lgfortran
 
 #
@@ -72,5 +72,5 @@ $(DOUBLE_MT_BIN): NMF_mt_double.o $(BLAS_LIB)
 # -- Clean rules --
 
 clean:
-	- $(RM_F) $(OBJS) $(BIN) *.x *.o
+	rm -f *.x *.o
 
