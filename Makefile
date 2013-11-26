@@ -10,7 +10,7 @@ include blas.mk
 CC             := gcc
 LINKER         := $(CC)
 CFLAGS         := -O2 -Wall -Wno-comment -I $(BLAS_INCLUDE) 
-LDFLAGS        := -lgfortran
+LDFLAGS        := -lgfortran -fopenmp
 
 #
 # --- General build definitions ------------------------------------------------
